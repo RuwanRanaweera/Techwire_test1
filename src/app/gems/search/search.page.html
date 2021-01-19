@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Search Gems</ion-title>
+  </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+  <ion-searchbar></ion-searchbar>
+<ion-segment (ionChange)="onFilterUpdate($event)">
+  <ion-segment-button value="all" checked>All Gems</ion-segment-button>
+  <ion-segment-button value="biding">Biding Gems</ion-segment-button>
+</ion-segment>
+  <ion-grid>
+    <ion-row>
+      <ion-col  >
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              {{ loadedGems[0].title }}
+            </ion-card-title>
+            <ion-card-subtitle>{{ loadedGems[0].price | currency}}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-img [src]="loadedGems[0].imageUrl" ></ion-img>
+          <ion-card-content>
+            <p>{{ loadedGems[0].description}}</p>
+          </ion-card-content>
+          <div >
+            <ion-button fill="clear" color="primary" [routerLink]="['/', 'gems', 'tabs', 'search', loadedGems[0].id]">More</ion-button>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col  size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+        <ion-virtual-scroll [items]="listedLoadedGems" approxItemHeight="10px">
+          <ion-item  [routerLink]="['/', 'gems', 'tabs', 'search', gem.id]" detail *virtualItem="let gem" >
+            <ion-avatar></ion-avatar>
+            <ion-thumbnail slot="start">
+              <ion-img [src]="gem.imageUrl"></ion-img>
+            </ion-thumbnail>
+            <ion-label>
+                <h2>{{ gem.title }}</h2>
+                <p>{{ gem.description}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-virtual-scroll>
+      </ion-col>
+    </ion-row>
+
+</ion-grid>
+</ion-content>

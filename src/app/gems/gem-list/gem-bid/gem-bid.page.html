@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/gems/tabs/gem-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ gem.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<ion-button margin color="primary" [routerLink]="['/', 'gems', 'tabs', 'gem-list', 'edit-gem', gem.id]">Edit</ion-button>
+</ion-content>
